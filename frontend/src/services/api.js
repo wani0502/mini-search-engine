@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 export const loginUser = async (email, password) => {
   const response = await fetch(`${BASE_URL}/auth/login`, {
@@ -29,7 +30,7 @@ export const uploadDocument = async (title, description,file) => {
   formData.append("description",description);
   formData.append("file", file); 
 
-  const response = await fetch("http://localhost:3000/document/upload", {
+  const response = await fetch(`${BASE_URL}/document/upload`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -43,7 +44,7 @@ export const toggleAccess = async (docId) => {
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    `http://localhost:3000/document/${docId}/access`,
+    `${BASE_URL}/document/${docId}/access`,
     {
       method: "PATCH",
       headers: {
@@ -58,7 +59,7 @@ export const getMyDocuments = async () => {
   const token = localStorage.getItem("token");
 
 
-  const res = await fetch("http://localhost:3000/document/me", {
+  const res = await fetch(`${BASE_URL}/document/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -69,7 +70,7 @@ export const getMyDocuments = async () => {
 export const deleteDocument = async (id) => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`http://localhost:3000/document/${id}`, {
+  const res = await fetch(`${BASE_URL}/document/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -79,13 +80,13 @@ export const deleteDocument = async (id) => {
   return res.json();
 };
 export const getPublicDocuments = async () => {
-  const res = await fetch("http://localhost:3000/document/public");
+  const res = await fetch(`${BASE_URL}/document/public`);
   return res.json();
 };
 export const searchDocuments = async (query) => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch("http://localhost:3000/search", {
+  const res = await fetch(`${BASE_URL}/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -101,7 +102,7 @@ export const getUserProfile = async () => {
 if(!token){
   console.log("No auth token");
 }
-  const res = await fetch("http://localhost:3000/user/me", {
+  const res = await fetch(`${BASE_URL}/user/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -118,7 +119,7 @@ if(!token){
 export const updateProfile = async (username, email) => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch("http://localhost:3000/user", {
+  const res = await fetch(`${BASE_URL}/user`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -133,7 +134,7 @@ export const editDocument = async (id, { title, description, isPublic }) => {
   const token = localStorage.getItem("token");
 
   const res = await fetch(
-    `http://localhost:3000/document/edit/${id}`,
+    `${BASE_URL}/document/edit/${id}`,
     {
       method: "PUT",
       headers: {
@@ -148,5 +149,5 @@ export const editDocument = async (id, { title, description, isPublic }) => {
     throw new Error("Failed to edit document");
   }
 
-  return res.json(); // updated document
+  return res.json(); 
 };

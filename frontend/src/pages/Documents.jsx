@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+const BASE_URL = import.meta.env.VITE_API_URL;
 import {
   getMyDocuments,
   toggleAccess,
@@ -103,7 +104,7 @@ const Documents = () => {
 
                 {/* VIEW */}
                 <a
-                  href={`http://localhost:3000/uploads/${doc.fileUrl}`}
+                  href={`${BASE_URL}/uploads/${doc.fileUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="

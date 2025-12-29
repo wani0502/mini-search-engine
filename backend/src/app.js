@@ -5,14 +5,14 @@ const errorHandler=require("./middlewares/errorHandler")
 const path = require("path");
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use(express.json());
-app.use(cors({
-  origin:"http://localhost:5173",
-  credentials:true
-}))
-app.use((req, res, next) => {
-  console.log(req.method, req.url);
-  next();
-});
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true
+  })
+);
+
+
 const profileRoutes=require("./routes/profile")
 const authRoutes=require("./routes/auth");
 const userRoutes=require("./routes/user");

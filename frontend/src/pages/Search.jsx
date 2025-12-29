@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { searchDocuments } from "../services/api";
-
+const BASE_URL = import.meta.env.VITE_API_URL;
 const Search = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -67,7 +67,7 @@ const Search = () => {
             </div>
 
             <a
-              href={`http://localhost:3000/uploads/${doc.fileUrl}`}
+              href={`${BASE_URL}/uploads/${doc.fileUrl}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-blue-600 text-white rounded"
