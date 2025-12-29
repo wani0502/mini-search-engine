@@ -12,3 +12,7 @@ yarn-error.log*
 # build
 dist/
 build/
+
+# uploaded files
+backend/uploads/
+
