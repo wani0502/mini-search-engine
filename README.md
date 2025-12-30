@@ -58,9 +58,19 @@ npm run dev
 -Environment Variables 
 -Create a .env file in the backend directory
 
+#Demo user credentials
+email-demouser1@gmail.com
+password-1234
+
+#Admin routes (API only)
+-GET /admin/documents - View all documents
+-DELETE /admin/documents/:id -Remove any document
 
 #Live URL
+https://mini-search-engine-frontend.onrender.com
 
+#Backend API
+https://mini-search-engine-backend.onrender.com
 
 
 #Author

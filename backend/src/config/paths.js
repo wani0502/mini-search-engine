@@ -1,5 +1,6 @@
 const path = require("path");
 
-const UPLOADS_DIR = path.join(__dirname, "../../uploads");
+const UPLOADS_DIR = path.join(process.cwd(), "src", "uploads");
+// const UPLOADS_DIR = path.join(__dirname, "../../uploads");
 
 module.exports = { UPLOADS_DIR };

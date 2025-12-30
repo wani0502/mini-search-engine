@@ -2,8 +2,14 @@ const express=require("express");
 const cors=require("cors");
 const app=express();
 const errorHandler=require("./middlewares/errorHandler")
-const path = require("path");
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+
+
+const { UPLOADS_DIR } = require("./config/paths");
+app.use("/uploads", express.static(UPLOADS_DIR));
+
+
+app.use("/uploads", express.static(UPLOADS_DIR));
+
 app.use(express.json());
 app.use(
   cors({

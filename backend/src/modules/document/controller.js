@@ -1,5 +1,6 @@
 const InvertedIndex = require("../../models/invertedIndex");
 const extractWords = require("../../utils/extractWords");
+const { UPLOADS_DIR } = require("../../config/paths");
 
 const fs = require("fs");
 const path = require("path");
@@ -116,8 +117,8 @@ const deleteDoc = async (req, res) => {
         {},
         { $pull: { documents: doc.id } }
     );
-    const uploadsDir = path.join(__dirname, "../../uploads");
-    const filePath = path.join(uploadsDir, doc.fileUrl);
+    // const uploadsDir = path.join(__dirname, "../../uploads");
+    const filePath = path.join(UPLOADS_DIR, doc.fileUrl)
 
     if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
